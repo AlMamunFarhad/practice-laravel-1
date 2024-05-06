@@ -7,9 +7,9 @@ use App\Http\Middleware\CalculateCode;
 
 
 
-Route::get('/', function() {
-    return view('welcome');
-})->middleware('cal');
+//Route::get('/', function() {
+//    return view('welcome');
+//})->middleware('cal');
 
 //Route::View('/', 'welcome');
 
@@ -37,13 +37,31 @@ Route::get('/', function() {
 //   return "<h1>Profile</h1>";
 //});
 
-Route::get('/', function() {
+//Route::get('/', function() {
+//    return view('welcome');
+//})->middleware(CalculateCode::class);
+
+Route::get('/', function (){
     return view('welcome');
-})->middleware(CalculateCode::class);
+});
 
 
 Route::resource('categories', PhotoController::class);
 
+//Route::get('/', function (Request $request) {
+//   return dd($request);
+//});
+
+Route::patch('/photo/{id}', [PhotoController::class, 'update']);
+Route::get('/photo/path', [PhotoController::class, 'the_path'])->name('photo.path');
+
 Route::get('/', function (Request $request) {
-   return dd($request);
+  $data = $request->all();
+//  return $data['status'];
+
+  dd($data);
+
+
+
+
 });

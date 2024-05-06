@@ -9,9 +9,9 @@ class PhotoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('welcome');
     }
 
     /**
@@ -49,9 +49,9 @@ class PhotoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): string
     {
-        //
+        return "<h1>Updated Photo ". $id ."</h1>";
     }
 
     /**
@@ -60,5 +60,23 @@ class PhotoController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function the_path(Request $request){
+
+//        if ($request->is('photo/path')) {
+//            return "Photo Path #True";
+//        }
+//     if ($request->routeIs('photo.path')) {
+//         return "<h1>The route name is #Photo.path</h1>";
+//     }
+//       return $request->host();
+//       return $request->getHttpHost();
+//       return $request->getSchemeAndHttpHost();
+
+//   if($request->method()){
+//       return "True";
+//   }
+return $request->ip();
     }
 }

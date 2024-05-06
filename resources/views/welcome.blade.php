@@ -17,8 +17,10 @@
 {{--    <a href="{{route('contact.info')}}">CONTACT</a>--}}
 {{--    <br>--}}
 {{--    <a href="/profile">Profile</a>--}}
-    <form method="post" action="/posts" id="example-csrf">
-
+    <form method="post" action="/photo/1" id="example-csrf">
+      @csrf
+        @method('PATCH')
+        <button type="submit">update</button>
     </form>
 
     </body>
