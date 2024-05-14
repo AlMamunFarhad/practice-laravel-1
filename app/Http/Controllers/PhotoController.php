@@ -77,6 +77,6 @@ class PhotoController extends Controller
 //   if($request->method()){
 //       return "True";
 //   }
-return $request->ip();
+//return $request->ip();
     }
 }
