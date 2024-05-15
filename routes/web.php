@@ -4,7 +4,13 @@ use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CalculateCode;
+use \Illuminate\Support\Facades\Cookie;
+use App\Http\Controllers\DashboardController;
 
+
+//Route::get('/', function (){
+//    return view('welcome');
+//});
 
 
 //Route::get('/', function() {
@@ -41,9 +47,20 @@ use App\Http\Middleware\CalculateCode;
 //    return view('welcome');
 //})->middleware(CalculateCode::class);
 
-Route::get('/', function (){
-    return view('welcome');
-});
+//Route::get('/', function (){
+////    return response("Hello World", 200)->header('Content-Type', 'Abdullah')->header('Header-2', 'Al Mamun')->header('header-3', 'Farhad');
+//
+////    return response("Included many headers")->withHeaders([                "Content-Type" => "Abdullah",
+////            "Header-2" => "Al Mamun",
+////            "Header-3" => "Farhad"]
+////    );
+//
+////    return view('welcome');
+//
+//
+//
+//
+//});
 
 
 Route::resource('categories', PhotoController::class);
@@ -66,10 +83,7 @@ Route::resource('categories', PhotoController::class);
 //  return $data['name'];
 //});
 
-Route::get('/', function (Request $request) {
-//   return $request->cookie('laravel_session');
-    return view('welcome');
-});
+//s
 //Route::post('/colors', function (Request $request) {
 ////    $data = $request->input('colors.0.name');
 //    return $request->input('colors.0.name');
@@ -128,4 +142,78 @@ Route::get('/', function (Request $request) {
 Route::post('/flash', function (Request $request) {
 //    $request->route('home');
   return  back()->withInput();
+});
+
+
+//Route::middleware('cache.headers:public;max_age=86400;etag')->group(function () {
+//    Route::get('/dashboard', function () {
+//        return "<h1>DASHBOARD</h1>";
+//    });
+//    Route::get('/posts', function () {
+//        return "POSTS";
+//    });
+//});
+//Route::middleware('cache.headers:public;max_age=86400;etag')->group(function () {
+//    Route::get('/dashboard', function () {
+//        $user = "Al Mamun Farhad";
+//        return response('DASHBOARD')->cookie('user', $user);
+//    });
+//    Route::get('/posts', function (Request $request) {
+//        return "Welcome to Posts Page" . $request->cookie('user');
+//    });
+//});
+//Route::middleware('cache.headers:private;no_cache')->group(function () {
+//    Route::get('/dashboard', function () {
+//        $user = "Al Mamun Farhad";
+//        return response('DASHBOARD')->cookie('user', $user);
+//    });
+//    Route::get('/posts', function (Request $request) {
+//        return "Welcome to Posts Page" . $request->cookie('user');
+//    });
+//});
+
+
+
+Route::middleware('cache.headers:public;max_age=86400;etag')->group(function () {
+    Route::get('/dashboard', function () {
+        $user = "Al Mamun Farhad";
+        $cookie = cookie('user', $user, 1);
+
+//        return response('DASHBOARD')->cookie($cookie);
+//        return response('DASHBOARD')->withoutCookie("visit");
+        Cookie::expire('visit');
+        return response('DASHBOARD');
+    });
+    Route::get('/posts', function (Request $request) {
+        $cookie = cookie('visit', 1, 30);
+        return response('POSTS')->cookie($cookie);
+//        return "Welcome to Posts Page" . $request->cookie('user');
+    });
+});
+
+
+Route::get('/home', function (){
+    return view('welcome');
+})->name('home');
+
+Route::get('/login', function (){
+     return redirect()->route('home');
+});
+Route::get('/data', function (Request $request){
+     return $request->query('id');
+})->name('data');
+
+Route::get('/dashboard', function (){
+    return redirect()->route('data', ['id' => 1]);
+});
+
+
+Route::get('/dashboard/index', [DashboardController::class, 'index']);
+
+Route::get('/', function (){
+    return redirect()->action([DashboardController::class, 'index'], ['id' => 1]);
+});
+
+Route::get('/external/website', function (){
+    return redirect()->away('https://farhadsr.com');
 });
