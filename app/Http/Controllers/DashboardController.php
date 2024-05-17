@@ -9,4 +9,7 @@ class DashboardController extends Controller
     public function index(Request $request){
         return $request->query('id');
     }
+    public function show(Request $request){
+        return view('welcome');
+    }
 }

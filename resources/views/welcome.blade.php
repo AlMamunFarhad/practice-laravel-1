@@ -66,20 +66,36 @@
 {{--            </div>--}}
 {{--        </div>--}}
 
-            <form action="/flash" method="post">
-                @csrf
-                <input type="email" name="email" placeholder="Enter your email address" value="{{old('email')}}">
-                <input type="text" name="username" placeholder="Enter your username" value="{{old('username')}}">
-                <button type="submit" class="btn btn-success btn-sm">Submit</button>
-            </form>
-            {{old('email')}}
-            {{old('username')}}
+{{--            <form action="/flash" method="post">--}}
+{{--                @csrf--}}
+{{--                <input type="email" name="email" placeholder="Enter your email address" value="{{old('email')}}">--}}
+{{--                <input type="text" name="username" placeholder="Enter your username" value="{{old('username')}}">--}}
+{{--                <button type="submit" class="btn btn-success btn-sm">Submit</button>--}}
+{{--            </form>--}}
+{{--            {{old('email')}}--}}
+{{--            {{old('username')}}--}}
+
+            <h1>Json Data</h1>
+            @vite('resources/js/app.js');
+            <script>
+                document.addEventListener('DOMContentLoaded', function (){
+                    axios.get('/json').then(function (data){
+                        console.log(data.data.name);
+                    })
+                })
+            </script>
+
+            {{microtime(true) - LARAVEL_START}}
     </div>
 </div>
 
 
 
-
+@if(session('user'))
+    <div>
+        <h1>My name is farhad</h1>
+    </div>
+@endif
 
     </body>
 </html>

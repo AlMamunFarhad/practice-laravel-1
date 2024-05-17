@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,10 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Route::resourceVerbs([
-            'create' => 'farhad',
-            'edit' => 'mikky',
-        ]);
+//        Route::resourceVerbs([
+//            'create' => 'farhad',
+//            'edit' => 'mikky',
+//        ]);
+
+//        $user = new User('Farhad', 'farhadmikky@gmail.com');
+//        View::share(['user' => $user]);
     }
 }
 

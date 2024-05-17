@@ -139,10 +139,10 @@ Route::resource('categories', PhotoController::class);
 //});
 
 
-Route::post('/flash', function (Request $request) {
-//    $request->route('home');
-  return  back()->withInput();
-});
+//Route::post('/flash', function (Request $request) {
+////    $request->route('home');
+//  return  back()->withInput();
+//});
 
 
 //Route::middleware('cache.headers:public;max_age=86400;etag')->group(function () {
@@ -174,46 +174,77 @@ Route::post('/flash', function (Request $request) {
 
 
 
-Route::middleware('cache.headers:public;max_age=86400;etag')->group(function () {
-    Route::get('/dashboard', function () {
-        $user = "Al Mamun Farhad";
-        $cookie = cookie('user', $user, 1);
-
-//        return response('DASHBOARD')->cookie($cookie);
-//        return response('DASHBOARD')->withoutCookie("visit");
-        Cookie::expire('visit');
-        return response('DASHBOARD');
-    });
-    Route::get('/posts', function (Request $request) {
-        $cookie = cookie('visit', 1, 30);
-        return response('POSTS')->cookie($cookie);
-//        return "Welcome to Posts Page" . $request->cookie('user');
-    });
-});
-
-
-Route::get('/home', function (){
-    return view('welcome');
-})->name('home');
-
-Route::get('/login', function (){
-     return redirect()->route('home');
-});
-Route::get('/data', function (Request $request){
-     return $request->query('id');
-})->name('data');
-
-Route::get('/dashboard', function (){
-    return redirect()->route('data', ['id' => 1]);
-});
+//Route::middleware('cache.headers:public;max_age=86400;etag')->group(function () {
+//    Route::get('/dashboard', function () {
+//        $user = "Al Mamun Farhad";
+//        $cookie = cookie('user', $user, 1);
+//
+////        return response('DASHBOARD')->cookie($cookie);
+////        return response('DASHBOARD')->withoutCookie("visit");
+//        Cookie::expire('visit');
+//        return response('DASHBOARD');
+//    });
+//    Route::get('/posts', function (Request $request) {
+//        $cookie = cookie('visit', 1, 30);
+//        return response('POSTS')->cookie($cookie);
+////        return "Welcome to Posts Page" . $request->cookie('user');
+//    });
+//});
 
 
-Route::get('/dashboard/index', [DashboardController::class, 'index']);
+//Route::get('/home', function (){
+//    return view('welcome');
+//})->name('home');
+//
+//Route::get('/login', function (){
+//     return redirect()->route('home');
+//});
+//Route::get('/data', function (Request $request){
+//     return $request->query('id');
+//})->name('data');
+
+//Route::get('/dashboard', function (){
+//    return redirect()->route('data', ['id' => 1]);
+//});
+
+
+//Route::get('/dashboard/index', [DashboardController::class, 'index']);
+
+//Route::get('/', function (){
+//    return redirect()->action([DashboardController::class, 'index'], ['id' => 1]);
+//});
+
+//Route::get('/external/website', function (){
+//    return redirect()->away('https://farhadsr.com');
+//});
+
+//Route::get('/', function (){
+//    return redirect('dashboard')->with('user', 'Farhad');
+//});
+
+Route::get('/dashboard', [DashboardController::class, 'show']);
 
 Route::get('/', function (){
-    return redirect()->action([DashboardController::class, 'index'], ['id' => 1]);
+    return view('welcome');
 });
 
-Route::get('/external/website', function (){
-    return redirect()->away('https://farhadsr.com');
+ Route::get('/json', function(){
+     return response()->json([
+         'name' => 'Farhad',
+         'role' => 'admin'
+     ]);
+ });
+
+ Route::view('/dashboard', 'dashboard');
+
+ Route::view('/posts', 'posts.create');
+
+
+
+
+
+
+Route::get('/profile', function(){
+
+    return view('profile');
 });
