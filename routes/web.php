@@ -222,29 +222,40 @@ Route::resource('categories', PhotoController::class);
 //    return redirect('dashboard')->with('user', 'Farhad');
 //});
 
-Route::get('/dashboard', [DashboardController::class, 'show']);
+// Route::get('/dashboard', [DashboardController::class, 'show']);
 
-Route::get('/', function (){
-    return view('welcome');
+// Route::get('/', function (){
+//     return view('welcome');
+// });
+
+//  Route::get('/json', function(){
+//      return response()->json([
+//          'name' => 'Farhad',
+//          'role' => 'admin'
+//      ]);
+//  });
+
+//  Route::view('/dashboard', 'dashboard');
+
+//  Route::view('/posts', 'posts.create');
+
+
+
+
+
+
+// Route::get('/profile', function(){
+
+//     return view('profile');
+// });
+
+
+Route::get('/', function(){
+
+    return view('welcome', ['username'=> 'Farhad', 'count'=> 20, 'status'=> 'active']);
 });
 
- Route::get('/json', function(){
-     return response()->json([
-         'name' => 'Farhad',
-         'role' => 'admin'
-     ]);
- });
-
- Route::view('/dashboard', 'dashboard');
-
- Route::view('/posts', 'posts.create');
-
-
-
-
-
-
-Route::get('/profile', function(){
-
-    return view('profile');
-});
+//Route::get('/', function(){
+//
+//    return view('welcome', ['users'=> ['name'=> ['Farhad','Mikky','Abdullah']]]);
+//});

@@ -75,27 +75,71 @@
 {{--            {{old('email')}}--}}
 {{--            {{old('username')}}--}}
 
-            <h1>Json Data</h1>
-            @vite('resources/js/app.js');
-            <script>
-                document.addEventListener('DOMContentLoaded', function (){
-                    axios.get('/json').then(function (data){
-                        console.log(data.data.name);
-                    })
-                })
-            </script>
+{{--            <h1>Json Data</h1>--}}
+{{--            @vite('resources/js/app.js');--}}
+{{--            <script>--}}
+{{--                document.addEventListener('DOMContentLoaded', function (){--}}
+{{--                    axios.get('/json').then(function (data){--}}
+{{--                        console.log(data.data.name);--}}
+{{--                    })--}}
+{{--                })--}}
+{{--            </script>--}}
 
-            {{microtime(true) - LARAVEL_START}}
-    </div>
-</div>
+{{--            {{microtime(true) - LARAVEL_START}}--}}
+{{--    </div>--}}
+{{--</div>--}}
 
 
 
-@if(session('user'))
-    <div>
-        <h1>My name is farhad</h1>
-    </div>
-@endif
+{{--@if(session('user'))--}}
+{{--    <div>--}}
+{{--        <h1>My name is farhad</h1>--}}
+{{--    </div>--}}
+{{--@endif--}}
+
+
+    @if($count === 20)
+        <h1>It is equel 20</h1>
+
+    @else
+        <h1>It is NOT equel 20</h1>
+    @endif
+
+    @unless($count === 0)
+        <h1>It is FALSE</h1>
+    @endunless
+
+    @isset($count)
+        <h1>It is SET</h1>
+    @endisset
+
+    @empty($count)
+        <h1>It is EMPTY</h1>
+    @endempty
+
+
+    @switch($count)
+
+        @case(20)
+           <h1>It is 20</h1>
+        @break
+        @case(10)
+            <h1>It is 10</h1>
+       @break
+       @default
+            <h1>It is DEFAULT</h1>
+    @endswitch
+
+
+    @for($count = 1; $count <= 10; $count++)
+
+                <h1>Current loop iteration {{$count}}</h1>
+    @endfor
+
+    @while($count <= 20)
+        <h1>{{$count}}</h1>
+       <?php $count++ ?>
+    @endwhile
 
     </body>
 </html>
