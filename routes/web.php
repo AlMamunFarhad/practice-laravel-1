@@ -250,12 +250,18 @@ Route::resource('categories', PhotoController::class);
 // });
 
 
-Route::get('/', function(){
-
-    return view('welcome', ['username'=> 'Farhad', 'count'=> 20, 'status'=> 'active']);
-});
+//Route::get('/', function(){
+//
+//    return view('welcome', ['username'=> 'Farhad', 'count'=> 20, 'status'=> 'active']);
+//});
 
 //Route::get('/', function(){
 //
 //    return view('welcome', ['users'=> ['name'=> ['Farhad','Mikky','Abdullah']]]);
 //});
+Route::get('/', function(){
+
+    $datas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    return view('welcome', ['datas'=> $datas]);
+});

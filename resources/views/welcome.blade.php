@@ -98,48 +98,149 @@
 {{--@endif--}}
 
 
-    @if($count === 20)
-        <h1>It is equel 20</h1>
+{{--    @if($count === 20)--}}
+{{--        <h1>It is equel 20</h1>--}}
 
-    @else
-        <h1>It is NOT equel 20</h1>
+{{--    @else--}}
+{{--        <h1>It is NOT equel 20</h1>--}}
+{{--    @endif--}}
+
+{{--    @unless($count === 0)--}}
+{{--        <h1>It is FALSE</h1>--}}
+{{--    @endunless--}}
+
+{{--    @isset($count)--}}
+{{--        <h1>It is SET</h1>--}}
+{{--    @endisset--}}
+
+{{--    @empty($count)--}}
+{{--        <h1>It is EMPTY</h1>--}}
+{{--    @endempty--}}
+
+
+{{--    @switch($count)--}}
+
+{{--        @case(20)--}}
+{{--           <h1>It is 20</h1>--}}
+{{--        @break--}}
+{{--        @case(10)--}}
+{{--            <h1>It is 10</h1>--}}
+{{--       @break--}}
+{{--       @default--}}
+{{--            <h1>It is DEFAULT</h1>--}}
+{{--    @endswitch--}}
+
+
+{{--    @for($count = 1; $count <= 10; $count++)--}}
+
+{{--                <h1>Current loop iteration {{$count}}</h1>--}}
+{{--    @endfor--}}
+
+{{--    @while($count <= 20)--}}
+{{--        <h1>{{$count}}</h1>--}}
+{{--       <?php $count++ ?>--}}
+{{--    @endwhile--}}
+
+{{--@foreach($users as $user)--}}
+
+{{--    <h1>{{$user[1]}}</h1>--}}
+
+{{--@endforeach--}}
+
+{{--    @forelse($users as $user)--}}
+{{--                <h1>{{$user[1]}}</h1>--}}
+{{--     @empty--}}
+{{--                <h1>NO users</h1>--}}
+{{--    @endforelse--}}
+{{--@foreach($users as $user)--}}
+{{--    {{$user[0]}}--}}
+{{--    @if($user[0] === 'Farhad')--}}
+{{--        <h1>Hi Farhad</h1>--}}
+{{--    @endif--}}
+
+{{--    @if($user[0] === 'Farhad')--}}
+{{--        @continue--}}
+{{--    @endif--}}
+{{--    @if($user[0] === 'Farhad')--}}
+{{--        @break--}}
+{{--    @endif--}}
+{{--@endforeach--}}
+
+{{--    @foreach($datas as $data)--}}
+{{--        @if($data == 2)--}}
+{{--            @continue--}}
+{{--            @break--}}
+{{--        @endif--}}
+
+{{--            @continue($data === 5)--}}
+{{--            @break($data === 5)--}}
+{{--      <h1>{{$data}}</h1>--}}
+{{--    @endforeach--}}
+
+@foreach($datas as $data)
+
+    @if($loop->first)
+        <h1>Hi I am First {{$data}}</h1>
+                    <br>
     @endif
+        @if($loop->last)
+            <h1>Hi I am Last {{$data}}</h1>
+            <br>
+    @endif
+        @if($loop->even)
+            <h1>Hi I am Even {{$data}}</h1>
+        @endif
 
-    @unless($count === 0)
-        <h1>It is FALSE</h1>
-    @endunless
+        @if($loop->odd)
+            <h1>Hi I am ODD {{$data}}</h1>
+         @endif
 
-    @isset($count)
-        <h1>It is SET</h1>
-    @endisset
+@endforeach
 
-    @empty($count)
-        <h1>It is EMPTY</h1>
-    @endempty
+{{--    @foreach($datas as $data)--}}
+{{--        @foreach($data->user as $user)--}}
+{{--            {{$loop->parent->first}}--}}
+{{--        @endforeach--}}
+{{--    @endforeach--}}
+
+            <style>
+                .red{
+                    color: red;
+                }
+                .blue{
+                    color: blue;
+                }
+            </style>
+            @php
+            $isActive = true;
+            $isNotActive = false;
+         @endphp
+
+    <div @class(['red'=> $isActive, 'blue'=> $isNotActive])>
+      <h1 @style(['background: yellow'=> $isActive])>Conditional Class Check</h1>
+    </div>
 
 
-    @switch($count)
+{{--       @foreach($datas as $data)--}}
+{{--           @include('listItem')--}}
+{{--       @endforeach    --}}
 
-        @case(20)
-           <h1>It is 20</h1>
-        @break
-        @case(10)
-            <h1>It is 10</h1>
-       @break
-       @default
-            <h1>It is DEFAULT</h1>
-    @endswitch
+@php
+$active = true;
+$notActive = false;
+ @endphp
 
 
-    @for($count = 1; $count <= 10; $count++)
+{{--           @includeWhen($active, 'listItem', ['extra' => 'This is extra data True'])--}}
+{{--           @includeUnless($notActive, 'listItem', ['extra' => 'This is extra data False'])--}}
 
-                <h1>Current loop iteration {{$count}}</h1>
-    @endfor
 
-    @while($count <= 20)
-        <h1>{{$count}}</h1>
-       <?php $count++ ?>
-    @endwhile
+{{--@includeUnless($notActive, 'listItem', ['extra' => 'This is extra data False'])--}}
+{{--@foreach($datas as $data)--}}
+{{--    @includeFirst(['nav','welcome', 'listItem'],['extra' => 'This is extra data'])--}}
+{{--@endforeach--}}
+@each('listItem', $datas, 'data')
 
-    </body>
+
+</body>
 </html>
