@@ -265,3 +265,15 @@ Route::get('/', function(){
 
     return view('welcome', ['datas'=> $datas]);
 });
+
+
+Route::get('/custom', function(){
+
+    return view('customProfile');
+
+});
+Route::get('/custom/welcome', function(){
+
+    return view('customWelcome');
+
+});
