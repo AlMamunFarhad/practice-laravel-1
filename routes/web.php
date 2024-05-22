@@ -277,3 +277,14 @@ Route::get('/custom/welcome', function(){
     return view('customWelcome');
 
 });
+Route::get('/profile2', function(){
+
+    $custom = 'button';
+    return view('profile2', compact('custom'));
+
+});
+Route::get('/profile3', function(){
+
+    return view('profile3');
+
+});

@@ -6,10 +6,24 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Components Master Layouts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 
-<h1>{{$slot}}</h1>
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+            <h1>{{$slot}}</h1>
+        </div>
+    </div>
+    @php
+      $message = "A simple primary alert—check it out!";
+    @endphp
+    <div class="row text-center">
+        <x-alert-component :message="$message" ></x-alert-component>
+    </div>
+</div>
+
 
 </body>
 </html>
