@@ -288,3 +288,11 @@ Route::get('/profile3', function(){
     return view('profile3');
 
 });
+
+Route::get('/customWelcome', function(){
+
+    $type = 'submit';
+
+    return view('layouts.customWelcome', ['type' => $type]);
+
+});

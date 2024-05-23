@@ -1,3 +1,5 @@
+
+@props(['master' => 'I am the master'])
 <x-master>
-    Whatever You Want
+{{$master}}
 </x-master>
