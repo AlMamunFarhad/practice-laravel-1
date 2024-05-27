@@ -1,15 +1,16 @@
-<button
+
+<div class="container">
+<button class="btn btn-primary"
 
 {{--    {{$attributes->merge(['class'=> 'down left', 'id'=>'right'])}} --}}
 
     type="{{$type}}">
     @foreach($attributes as $attribute => $value)
-        @if($value === 'up')
-            {{'down'}}
-        @endif
+           {{$checkClass($value)}}
     @endforeach
 
 
 
 </button>
 
+</div>

@@ -296,3 +296,18 @@ Route::get('/customWelcome', function(){
     return view('layouts.customWelcome', ['type' => $type]);
 
 });
+
+Route::get('/customModal', function(){
+
+
+    return view('layouts.customModal');
+
+});
+
+Route::get('/posts', [\App\Http\Controllers\postsController::class, 'index'])->name('posts.index');
+
+Route::get('/linkWelcome', function (){
+  return  view('linkWelcome');
+});
+
+Route::get('/posts2', [\App\Http\Controllers\posts2Controller::class, 'index'])->name('posts2.index');

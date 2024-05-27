@@ -13,6 +13,12 @@ class ButtonComponent extends Component{
         $this->type = $type;
     }
 
+    public function checkClass($class = null){
+        if($class === 'up'){
+            return 'Check Class Method...';
+        }
+        return "This is something";
+    }
     public function render(){
 
         return view('components.buttonComponent');
