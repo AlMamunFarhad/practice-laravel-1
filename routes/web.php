@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\SessionsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CalculateCode;
@@ -311,3 +312,33 @@ Route::get('/linkWelcome', function (){
 });
 
 Route::get('/posts2', [\App\Http\Controllers\posts2Controller::class, 'index'])->name('posts2.index');
+
+
+Route::get('/session', function(Request $request){
+
+//    $request->session();
+
+//    session(['secret' => '1234mypassword']);
+
+//    return session('secret');
+
+//    return view('session');
+
+});
+
+
+//Route::prefix('sessions')
+//    ->controller(SessionsController::class)
+//    ->group(function () {
+//    Route::get('/session', [SessionsController::class, 'index'])->name('session.index');
+//});
+
+
+//Route::get('/session',[SessionsController::class, 'index']);
+
+
+Route::controller(SessionsController::class)->group(function(){
+    Route::get('/session', 'index');
+    Route::get('/set', 'set');
+    Route::get('/delete', 'delete');
+});
