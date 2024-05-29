@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\postsController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CalculateCode;
 use \Illuminate\Support\Facades\Cookie;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\postsController2;
 
 
 //Route::get('/', function (){
@@ -342,3 +344,23 @@ Route::controller(SessionsController::class)->group(function(){
     Route::get('/set', 'set');
     Route::get('/delete', 'delete');
 });
+
+//Route::get('/post2', function(){
+//
+//
+//    return view('posts2.index');
+//
+//});
+
+
+Route::resource('/posts2/create', postsController2::class);
+
+Route::post('/postsCreate', [postsController2::class, 'store'])->name('posts.store');
+
+
+//Route::get('post2', function (){
+//  return  view('posts2.create');
+//});
+
+
+
