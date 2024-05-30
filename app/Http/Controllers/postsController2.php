@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequestController;
+use Illuminate\Support\Facades\Validator;
 
 class postsController2 extends Controller
 {
@@ -25,17 +27,61 @@ class postsController2 extends Controller
     /**
      * Store a newly created resource in storage.
      */
+//    public function store(PostRequestController $request)
+//    {
+//
+//
+//
+////      $validateData =  $request->validate([
+////            'title' => 'required|max:50',
+////            'body' => 'required',
+////        ]);
+//
+////        dd($validateData);
+//
+//        dd($request->validated());
+//
+//
+//
+//    }
+
     public function store(Request $request)
     {
-      $validateData =  $request->validate([
-            'title' => 'required|max:50',
+
+
+      $inputs =  $request->all();
+      $rules = [
+          'title' => 'required|max:50',
+          'body' => 'required'
+      ];
+
+        $message = [
+            'required' => 'The :attribute field is required.',
+        ];
+
+               $validator = validator::make($inputs,$rules, $message)->validate();
+
+//        $validator = validator::make($request->all(), [
+//            'title' => 'required|max:50',
 //            'body' => 'required',
-        ]);
+//        ])->validate();
 
-//        dd($validateData);
 
-        echo "hello";
+//         if ($validator->fails()){
+////             dd($validator);
+//             return redirect()->route('posts.store')->withErrors($validator)->withInput();
+//         }
+
+
+
+//     $validated =  $validator->validated();
+
+         dd($validated);
+
+
+
     }
+
 
     /**
      * Display the specified resource.
@@ -50,7 +96,7 @@ class postsController2 extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
