@@ -177,25 +177,25 @@
 {{--      <h1>{{$data}}</h1>--}}
 {{--    @endforeach--}}
 
-@foreach($datas as $data)
+{{--@foreach($datas as $data)--}}
 
-    @if($loop->first)
-        <h1>Hi I am First {{$data}}</h1>
-                    <br>
-    @endif
-        @if($loop->last)
-            <h1>Hi I am Last {{$data}}</h1>
-            <br>
-    @endif
-        @if($loop->even)
-            <h1>Hi I am Even {{$data}}</h1>
-        @endif
+{{--    @if($loop->first)--}}
+{{--        <h1>Hi I am First {{$data}}</h1>--}}
+{{--                    <br>--}}
+{{--    @endif--}}
+{{--        @if($loop->last)--}}
+{{--            <h1>Hi I am Last {{$data}}</h1>--}}
+{{--            <br>--}}
+{{--    @endif--}}
+{{--        @if($loop->even)--}}
+{{--            <h1>Hi I am Even {{$data}}</h1>--}}
+{{--        @endif--}}
 
-        @if($loop->odd)
-            <h1>Hi I am ODD {{$data}}</h1>
-         @endif
+{{--        @if($loop->odd)--}}
+{{--            <h1>Hi I am ODD {{$data}}</h1>--}}
+{{--         @endif--}}
 
-@endforeach
+{{--@endforeach--}}
 
 {{--    @foreach($datas as $data)--}}
 {{--        @foreach($data->user as $user)--}}

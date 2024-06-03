@@ -9,6 +9,8 @@ use App\Http\Middleware\CalculateCode;
 use \Illuminate\Support\Facades\Cookie;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\postsController2;
+use \Illuminate\Support\Facades\DB;
+use \Illuminate\Support\Facades\Hash;
 
 
 //Route::get('/', function (){
@@ -262,12 +264,37 @@ Route::resource('categories', PhotoController::class);
 //
 //    return view('welcome', ['users'=> ['name'=> ['Farhad','Mikky','Abdullah']]]);
 //});
+
 Route::get('/', function(){
+// INSERT QUERY
+//    DB::insert('insert into users (name, email, password) values(?,?,?)', ['Farhad', 'farhadmik@gmail.com', 'secret123']);
+//    return view('welcome');
 
-    $datas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// $users = DB::select('select * from users where id = ?', [1]);
+//
+//
+//  UPDATE QUERY
+//  $hashPassword = Hash::make('secret123@@');
+//
+//   $update_users =  DB::update("update users set password = '$hashPassword', created_at = CURRENT_TIMESTAMP, updated_at = CURRENT_TIMESTAMP where id = ? ", [1]);
+//
+//   dd($update_users);
 
-    return view('welcome', ['datas'=> $datas]);
+
+// DELETE QUERY
+
+ $delete = DB::delete('delete from users where id = ? ', [5]);
+
+ dd($delete);
+
 });
+
+//Route::get('/', function(){
+//
+//    $datas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+//
+//    return view('welcome', ['datas'=> $datas]);
+//});
 
 
 Route::get('/custom', function(){
